@@ -62,7 +62,7 @@ export class Extension extends BaseExtension implements ISeadragonExtension {
     create(): void {
         super.create();
 
-        $.subscribe(BaseEvents.METRIC_CHANGED, () => {         
+        $.subscribe(BaseEvents.METRIC_CHANGED, () => {
             if (this.isMobileView()) {
                 const settings: ISettings = {};
                 settings.pagingEnabled = false;
@@ -596,7 +596,7 @@ export class Extension extends BaseExtension implements ISeadragonExtension {
     }
 
     prevSearchResult(): void {
-        let foundResult: AnnotationGroup;
+        // let foundResult: AnnotationGroup;
         if (!this.annotations) return;
 
         // get the first result with a canvasIndex less than the current index.
@@ -604,8 +604,8 @@ export class Extension extends BaseExtension implements ISeadragonExtension {
             const result: AnnotationGroup = this.annotations[i];
 
             if (result.canvasIndex <= this.getPrevPageIndex()) {
-                foundResult = result;
-                $.publish(BaseEvents.CANVAS_INDEX_CHANGED, [foundResult.canvasIndex]);
+                // foundResult = result;
+                $.publish(BaseEvents.CANVAS_INDEX_CHANGED, [result.canvasIndex]);
                 break;
             }
         }
