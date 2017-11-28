@@ -6,8 +6,8 @@ import {HeaderPanel} from "../../modules/uv-shared-module/HeaderPanel";
 import {HelpDialogue} from "../../modules/uv-dialogues-module/HelpDialogue";
 import {MoreInfoRightPanel} from "../../modules/uv-moreinforightpanel-module/MoreInfoRightPanel";
 import {ResourcesLeftPanel} from "../../modules/uv-resourcesleftpanel-module/ResourcesLeftPanel";
-import {SettingsDialogue} from "./SettingsDialogue";
-import {ShareDialogue} from "./ShareDialogue";
+import {SettingsDialogue} from "../../modules/uv-dialogues-module/SettingsDialogue";
+import {ShareDialogue} from "../../modules/uv-dialogues-module/ShareDialogue";
 import {Shell} from "../../modules/uv-shared-module/Shell";
 import {defaultModuleInstall} from "./helpers";
 
