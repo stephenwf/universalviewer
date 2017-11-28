@@ -9,7 +9,7 @@ export class Auth1 {
     static storageStrategy: string;
 
     static loadExternalResources(resourcesToLoad: Manifesto.IExternalResource[], storageStrategy: string, options: Manifesto.IManifestoOptions): Promise<Manifesto.IExternalResource[]> {
-        
+
         return new Promise<Manifesto.IExternalResource[]>((resolve) => {
 
             Auth1.storageStrategy = storageStrategy;
@@ -48,10 +48,9 @@ export class Auth1 {
             });
         });
     }
-    
+
     static getCookieServiceUrl(service: Manifesto.IService): string {
-        let cookieServiceUrl: string = service.id + "?origin=" + Auth1.getOrigin();
-        return cookieServiceUrl;
+        return service.id + "?origin=" + Auth1.getOrigin();
     }
 
     static openContentProviderInteraction(service: Manifesto.IService): Window | null {
@@ -83,7 +82,7 @@ export class Auth1 {
     }
 
     static handleMovedTemporarily(resource: Manifesto.IExternalResource): Promise<void> {
-        return new Promise<void>((resolve) => {   
+        return new Promise<void>((resolve) => {
             Auth1.showDegradedMessage(resource);
             resource.isResponseHandled = true;
             resolve();
@@ -102,7 +101,7 @@ export class Auth1 {
                 resolve();
             } else {
                 reject('Token service not found');
-            } 
+            }
         });
     }
 
@@ -193,7 +192,7 @@ export class Auth1 {
             const serviceOrigin: string = Auth1.getOrigin(tokenService.id);
             const messageId: number = new Date().getTime();
 
-            Auth1.messages[messageId] = { 
+            Auth1.messages[messageId] = {
                 "resolve": resolve,
                 "reject": reject,
                 "serviceOrigin": serviceOrigin,
@@ -225,7 +224,7 @@ export class Auth1 {
         });
     }
 
-    static receiveToken(event: any): void {    
+    static receiveToken(event: any): void {
         if (event.data.hasOwnProperty("messageId")) {
 
             const message: any = Auth1.messages[event.data.messageId];
@@ -237,7 +236,7 @@ export class Auth1 {
                     delete Auth1.messages[event.data.messageId];
                     return;
                 });
-            }    
+            }
         }
     }
 

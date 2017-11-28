@@ -157,7 +157,7 @@ export class Auth09 {
                 resolve();
             } else {
                 reject('Token service not found');
-            } 
+            }
         });
     }
 
