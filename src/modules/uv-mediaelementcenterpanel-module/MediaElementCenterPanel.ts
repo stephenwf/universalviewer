@@ -68,7 +68,7 @@ export class MediaElementCenterPanel extends CenterPanel {
             const sources: any[] = [];
 
             const renderings: Manifesto.IRendering[] = canvas.getRenderings();
-            
+
             if (renderings && renderings.length) {
                 $.each(canvas.getRenderings(), (index: number, rendering: Manifesto.IRendering) => {
                     sources.push({
@@ -81,7 +81,7 @@ export class MediaElementCenterPanel extends CenterPanel {
 
                 if (formats && formats.length) {
                     $.each(formats, (index: number, format: Manifesto.IAnnotationBody) => {
-                        
+
                         const type: Manifesto.MediaType | null = format.getFormat();
 
                         if (type) {
@@ -90,7 +90,7 @@ export class MediaElementCenterPanel extends CenterPanel {
                                 src: format.id
                             });
                         }
-                        
+
                     });
                 }
             }
@@ -105,7 +105,7 @@ export class MediaElementCenterPanel extends CenterPanel {
                     poster: poster,
                     features: ['playpause', 'current', 'progress', 'volume'],
                     success: function(mediaElement: any, originalNode: any) {
-                        
+
                         mediaElement.addEventListener('canplay', () => {
                             that.resize();
                         });
@@ -130,7 +130,6 @@ export class MediaElementCenterPanel extends CenterPanel {
                 });
 
             } else { // audio
-
                 this.$media = $('<audio controls="controls" preload="none"></audio>');
                 this.$container.append(this.$media);
 
@@ -141,7 +140,7 @@ export class MediaElementCenterPanel extends CenterPanel {
                     showPosterWhenPaused: true,
                     showPosterWhenEnded: true,
                     success: function(mediaElement: any, originalNode: any) {
-                        
+
                         mediaElement.addEventListener('canplay', () => {
                             that.resize();
                         });
@@ -221,6 +220,6 @@ export class MediaElementCenterPanel extends CenterPanel {
             }
 
         }
-        
+
     }
 }
