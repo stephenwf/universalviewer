@@ -1,0 +1,17 @@
+{
+  "module": "amd",
+  "sourceMap": true,
+  "declarations": false,
+  "noLib": false,
+  "comments": true,
+  "lib": ["es6"],
+  "noImplicitAny": true,
+  "noImplicitReturns": true,
+  "noImplicitThis": false,
+  "noUnusedLocals": true,
+  "noUnusedParameters": false,
+  "strictNullChecks": true,
+  "suppressImplicitAnyIndexErrors": true,
+  "target": "es5",
+  "types": ["requirejs", "jquery", "modernizr", "three"]
+}
