@@ -1,6 +1,7 @@
 import {BaseEvents} from "./modules/uv-shared-module/BaseEvents";
 import {Extension as DefaultExtension} from "./extensions/uv-default-extension/Extension";
 import {Extension as MediaElementExtension} from "./extensions/uv-mediaelement-extension/Extension";
+import {Extension as HelloWorldExtension} from "./extensions/uv-hello-world-extension/Extension";
 import {Extension as OpenSeadragonExtension} from "./extensions/uv-seadragon-extension/Extension";
 import {Extension as PDFExtension} from "./extensions/uv-pdf-extension/Extension";
 import {Extension as VirtexExtension} from "./extensions/uv-virtex-extension/Extension";
@@ -37,6 +38,11 @@ export default class UVComponent extends _Components.BaseComponent implements IU
             name: 'uv-seadragon-extension'
         };
 
+        this._extensions[manifesto.ResourceType.canvas().toString()] = {
+            type: HelloWorldExtension,
+            name: 'uv-hello-world-extension'
+        };
+
         this._extensions[manifesto.ResourceType.movingimage().toString()] = {
             type: MediaElementExtension,
             name: 'uv-mediaelement-extension'
@@ -63,7 +69,7 @@ export default class UVComponent extends _Components.BaseComponent implements IU
             type: OpenSeadragonExtension,
             name: 'uv-seadragon-extension'
         };
-        
+
         this._extensions[manifesto.MediaType.pdf().toString()] = {
             type: PDFExtension,
             name: 'uv-pdf-extension'
@@ -93,7 +99,7 @@ export default class UVComponent extends _Components.BaseComponent implements IU
 
         return success;
     }
-    
+
     public data(): IUVData {
         return <IUVData>{
             annotations: null,
@@ -147,12 +153,12 @@ export default class UVComponent extends _Components.BaseComponent implements IU
                 $.extend(this.extension.data, data);
                 this.extension.update();
             }
-        }       
+        }
     }
 
     private _propertiesChanged(data: IUVData, properties: string[]): boolean {
         let propChanged: boolean = false;
-        
+
         for (var i = 0; i < properties.length; i++) {
             propChanged = this._propertyChanged(data, properties[i]);
             if (propChanged) {
@@ -178,7 +184,7 @@ export default class UVComponent extends _Components.BaseComponent implements IU
     }
 
     private _reload(data: IUVData): void {
-        
+
         $.disposePubSub(); // remove any existing event listeners
 
         $.subscribe(BaseEvents.RELOAD, (e: any, data?: IUVData) => {
@@ -205,7 +211,7 @@ export default class UVComponent extends _Components.BaseComponent implements IU
             canvasIndex: data.canvasIndex,
             locale: data.locales[0].name
         }).then((helper: Manifold.IHelper) => {
-            
+
             let trackingLabel: string = helper.getTrackingLabel();
             trackingLabel += ', URI: ' + (window.location !== window.parent.location) ? document.referrer : document.location;
             window.trackingLabel = trackingLabel;
@@ -230,7 +236,7 @@ export default class UVComponent extends _Components.BaseComponent implements IU
             // to determine the correct extension to use, we need to inspect canvas.content.items[0].format
             // which is an iana media type: http://www.iana.org/assignments/media-types/media-types.xhtml
             const content: Manifesto.IAnnotation[] = canvas.getContent();
-            
+
             if (content.length) {
                 const annotation: Manifesto.IAnnotation = content[0];
                 const body: Manifesto.IAnnotationBody[] = annotation.getBody();
@@ -244,7 +250,7 @@ export default class UVComponent extends _Components.BaseComponent implements IU
                         if (!extension) {
                             // try type
                             const type: Manifesto.ResourceType | null = body[0].getType();
-                        
+
                             if (type) {
                                 extension = that._extensions[type.toString()];
                             }

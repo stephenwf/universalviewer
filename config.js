@@ -38,9 +38,10 @@ module.exports = function () {
         uvMediaElementExtension: './src/extensions/uv-mediaelement-extension',
         uvPdfExtension: './src/extensions/uv-pdf-extension',
         uvSeadragonExtension: './src/extensions/uv-seadragon-extension',
-        uvVirtexExtension: './src/extensions/uv-virtex-extension'
+        uvVirtexExtension: './src/extensions/uv-virtex-extension',
+        uvHelloWorldExtension: './src/extensions/uv-hello-world-extension'
     };
     this.themes = {
-        
+
     }
 }

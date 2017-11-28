@@ -1,0 +1,39 @@
+{
+  "options":
+  {
+    "authAPIVersion": 0.9,
+    "theme": "uv-en-GB-theme",
+    "bookmarkThumbHeight": 150,
+    "bookmarkThumbWidth": 90
+  },
+  "modules":
+  {
+    "shareDialogue":
+    {
+      "options":
+      {
+        "embedTemplate": "<iframe src=\"{0}\" width=\"{1}\" height=\"{2}\" allowfullscreen frameborder=\"0\"></iframe>"
+      }
+    },
+    "footerPanel":
+    {
+      "options": {
+        "downloadEnabled": false
+      }
+    },
+    "resourcesLeftPanel": {
+      "options": {
+        "panelAnimationDuration": 0,
+        "panelCollapsedWidth": 30,
+        "panelExpandedWidth": 255,
+        "panelOpen": true
+      }
+    },
+    "helloWorldCenterPanel":
+    {
+      "options": {
+        "message": "Hello world"
+      }
+    }
+  }
+}
