@@ -140,7 +140,7 @@ export class SeadragonCenterPanel extends CenterPanel {
 
     updateResponsiveView(): void {
         this.setNavigatorVisible();
-        
+
         if (this.extension.isMobileView()) {
             this.viewer.autoHideControls = false;
             this.$viewportNavButtons.hide();
@@ -246,7 +246,7 @@ export class SeadragonCenterPanel extends CenterPanel {
         this.$rotateButton.attr('tabindex', 0);
         this.$rotateButton.prop('title', this.content.rotateRight);
         this.$rotateButton.addClass('rotate viewportNavButton');
-        
+
         this.$viewportNavButtonsContainer = this.$viewer.find('.openseadragon-container > div:not(.openseadragon-canvas):first');
         this.$viewportNavButtons = this.$viewportNavButtonsContainer.find('.viewportNavButton');
 
@@ -340,7 +340,7 @@ export class SeadragonCenterPanel extends CenterPanel {
 
         this.$nextButton = $('<div class="paging btn next" tabindex="0"></div>');
         this.$nextButton.prop('title', this.content.next);
-        
+
         this.viewer.addControl(this.$prevButton[0], {anchor: OpenSeadragon.ControlAnchor.TOP_LEFT});
         this.viewer.addControl(this.$nextButton[0], {anchor: OpenSeadragon.ControlAnchor.TOP_RIGHT});
 
@@ -348,7 +348,7 @@ export class SeadragonCenterPanel extends CenterPanel {
             case manifesto.ViewingDirection.bottomToTop().toString() :
             case manifesto.ViewingDirection.topToBottom().toString() :
                 this.$prevButton.addClass('vertical');
-                this.$nextButton.addClass('vertical');;
+                this.$nextButton.addClass('vertical');
                 break;
         }
 
@@ -396,7 +396,7 @@ export class SeadragonCenterPanel extends CenterPanel {
             this.controlsVisible = true;
             this.viewer.setControlsEnabled(true);
         });
-        
+
         this.$nextButton.on('focus', () => {
             if (this.controlsVisible) return;
             this.controlsVisible = true;
@@ -417,7 +417,7 @@ export class SeadragonCenterPanel extends CenterPanel {
 
             for (let i = 0; i < resources.length; i++) {
                 const data: any = resources[i];
-                
+
                 let tileSource: any;
 
                 if (data.hasServiceDescriptor) {
@@ -482,7 +482,7 @@ export class SeadragonCenterPanel extends CenterPanel {
                         for (let i = 0; i < resources.length - 1; i++) {
                             page = resources[i];
                             nextPage = resources[i + 1];
-                            nextPage.y = (page.y || 0) + page.height;;
+                            nextPage.y = (page.y || 0) + page.height;
                         }
                     } else {
                         // bottom to top
@@ -543,7 +543,7 @@ export class SeadragonCenterPanel extends CenterPanel {
                 }
             } else {
                 if (this.extension.helper.isFirstCanvas()) {
-                    this.disablePrevButton();                    
+                    this.disablePrevButton();
                 } else {
                     this.enablePrevButton();
                 }
@@ -555,7 +555,7 @@ export class SeadragonCenterPanel extends CenterPanel {
                 }
             }
         }
-        
+
         this.setNavigatorVisible();
 
         this.overlayAnnotations();
@@ -569,7 +569,7 @@ export class SeadragonCenterPanel extends CenterPanel {
 
     zoomToInitialAnnotation(): void {
         let annotationRect: AnnotationRect | null = this.getInitialAnnotationRect();
-        
+
         (<ISeadragonExtension>this.extension).previousAnnotationRect = null;
         (<ISeadragonExtension>this.extension).currentAnnotationRect = null;
 
@@ -626,7 +626,7 @@ export class SeadragonCenterPanel extends CenterPanel {
         }
     }
 
-    goHome(): void {        
+    goHome(): void {
         this.viewer.viewport.goHome(true);
     }
 
@@ -691,7 +691,7 @@ export class SeadragonCenterPanel extends CenterPanel {
             const bounds: Bounds = new Bounds(dimensions.regionPos.x, dimensions.regionPos.y, dimensions.region.width, dimensions.region.height);
             return bounds.toString();
         }
-        
+
         return null;
     }
 
@@ -811,7 +811,7 @@ export class SeadragonCenterPanel extends CenterPanel {
 
         const currentAnnotationRectIndex: number = this.getAnnotationRectIndex(currentAnnotationRect);
         let foundRect: AnnotationRect | null = null;
-   
+
         for (let i = currentAnnotationRectIndex - 1; i >= 0; i--) {
             const rect: AnnotationRect = annotationRects[i];
 
@@ -882,7 +882,7 @@ export class SeadragonCenterPanel extends CenterPanel {
         if (!this.extension.resources) {
             return newRects;
         }
-        
+
         let resource: any = this.extension.resources.en().where(x => x.index === annotationGroup.canvasIndex).first();
         let index: number = this.extension.resources.indexOf(resource);
         let offsetX: number = 0;
@@ -974,13 +974,13 @@ export class SeadragonCenterPanel extends CenterPanel {
             }
         }
     }
-    
+
     setNavigatorVisible(): void {
 
         const navigatorEnabled: boolean = Utils.Bools.getBool(this.extension.getSettings().navigatorEnabled, true) && !this.extension.isMobileView();
 
         this.viewer.navigator.setVisible(navigatorEnabled);
-        
+
         if (navigatorEnabled) {
             this.$navigator.show();
         } else {
